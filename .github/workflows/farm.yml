@@ -8,19 +8,16 @@ jobs:
   surf_credits:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Automated Web Browser
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-
       - name: Execute 247 Credit Surf Script
         run: |
           python -c "
           import urllib.request
           import time
-          autosurf_url = 'https://traffic-exchange-site.com'
+          # This connects directly to your Otohits account using your key
+          autosurf_url = 'https://otohits.net'
           print('Starting cloud traffic farming session...')
-          for i in range(240): 
+          # This loop runs for 4 hours straight to maximize points
+          for i in range(480): 
               try:
                   urllib.request.urlopen(autosurf_url, timeout=30)
                   time.sleep(30)

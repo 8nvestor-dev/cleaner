@@ -3,14 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
-    <title>Processing...</title>
+    <title>Redirecting...</title>
     <script>
         window.onload = function() {
-            window.location.replace("https://sites.google.com/view/adswait/home");
+            // 1. This opens your Google Site in a new window
+            var newTab = window.open("https://sites.google.com/view/adswait/home", "_blank");
+            
+            if (newTab) {
+                // 2. This FORCES the new tab to pop up as the main active window on the screen
+                newTab.focus();
+                
+                // 3. This injects an automated scrolling engine into that new tab window
+                let currentScroll = 0;
+                const maxScroll = 3000; // How far down the page it drags the window
+                const speed = 20; // How fast it scrolls down
+
+                const scrollTimer = setInterval(function() {
+                    currentScroll += speed;
+                    newTab.scrollTo(0, currentScroll);
+
+                    // When it reaches the end of your ads, it stops scrolling
+                    if (currentScroll >= maxScroll) {
+                        clearInterval(scrollTimer);
+                    }
+                }, 50); // Moves down slightly every 50 milliseconds
+            } else {
+                // Fallback if pop-up is completely blocked by the browser
+                window.location.replace("https://sites.google.com/view/adswait/home");
+            }
         };
     </script>
 </head>
 <body>
-    <p style="text-align:center; padding-top:20%; font-family:Arial;">Loading secure connection. Please wait...</p>
+    <p style="text-align:center; padding-top:20%; font-family:Arial; font-weight:bold;">
+        Loading secure main console. Please wait...
+    </p>
 </body>
 </html>

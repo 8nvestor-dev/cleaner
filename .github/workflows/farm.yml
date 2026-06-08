@@ -8,19 +8,12 @@ jobs:
   surf_credits:
     runs-on: ubuntu-latest
     steps:
-      - name: Execute 247 Credit Surf Script
+      - name: Run Otohits Cloud Container
         run: |
-          python -c "
-          import urllib.request
-          import time
-          # This connects directly to your Otohits account using your key
-          autosurf_url = 'https://otohits.net'
-          print('Starting cloud traffic farming session...')
-          # This loop runs for 4 hours straight to maximize points
-          for i in range(480): 
-              try:
-                  urllib.request.urlopen(autosurf_url, timeout=30)
-                  time.sleep(30)
-              except Exception as e:
-                  pass
-          "
+          docker run -d --name otohits-client \
+            -e APPLICATION_KEY="a9e28065-a17e-4fe4-98d3-26824dd962ed" \
+            -e OPTIONS="/autoupdate /nolog" \
+            otohits/viewer:latest
+          
+          echo "Cloud engine started successfully! Farming points for 50 minutes..."
+          sleep 3000

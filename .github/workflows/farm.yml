@@ -10,11 +10,11 @@ jobs:
     steps:
       - name: Download Official App Engine
         run: |
-          wget https://otohits.net
-          tar -xzf otohits-app-linux.tar.gz
+          wget https://otohits.net -O otohits.tar.gz
+          tar -xzf otohits.tar.gz
           
       - name: Launch 247 Cloud Farming Loop
         run: |
-          ./otohits-app --login:a9e28065-a17e-4fe4-98d3-26824dd962ed --nolog &
+          ./OtohitsApp --login:a9e28065-a17e-4fe4-98d3-26824dd962ed --nolog &
           echo "Official background engine launched! Farming credits into your balance..."
           sleep 2400

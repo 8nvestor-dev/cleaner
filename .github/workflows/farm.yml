@@ -13,7 +13,7 @@ jobs:
           docker run -d --name otohits-client \
             -e APPLICATION_KEY="a9e28065-a17e-4fe4-98d3-26824dd962ed" \
             -e OPTIONS="/autoupdate /nolog" \
-            otohits/viewer:latest
+            otohits/app:latest
           
           echo "Cloud engine started successfully! Farming points for 50 minutes..."
           sleep 3000

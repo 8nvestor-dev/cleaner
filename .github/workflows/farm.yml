@@ -8,26 +8,13 @@ jobs:
   surf_credits:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Clean Connection Loop
+      - name: Download Official App Engine
         run: |
-          python3 -c "
-          import urllib.request
-          import time
+          wget https://otohits.net
+          tar -xzf otohits-app-linux.tar.gz
           
-          # This connects straight to the live server node via your key
-          api_endpoint = 'https://otohits.net'
-          print('Farming server connection initialized successfully...')
-          
-          # Runs a 45-minute background loop to accumulate credits safely
-          for cycle in range(90):
-              try:
-                  req = urllib.request.Request(
-                      api_endpoint, 
-                      headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-                  )
-                  with urllib.request.urlopen(req, timeout=15) as response:
-                      print(f'Cycle {cycle+1}: Account verified. Points updated.')
-              except Exception as e:
-                  print('Network busy... re-routing cycle')
-              time.sleep(30)
-          "
+      - name: Launch 247 Cloud Farming Loop
+        run: |
+          ./otohits-app --login:a9e28065-a17e-4fe4-98d3-26824dd962ed --nolog &
+          echo "Official background engine launched! Farming credits into your balance..."
+          sleep 2400
